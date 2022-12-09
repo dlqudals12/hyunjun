@@ -7,19 +7,51 @@ export const SearchStatus = atom({
   input: "",
 });
 
+export const AlertPopupData = atom({
+  open: false,
+  msg: "",
+  rightMsg: "",
+  leftMsg: "",
+  rightCallback: () => {},
+  leftCallback: () => {},
+});
+
+export const Refresh = atom(false);
+
 export const MyRow = atom(false);
 
+export const RowChangeData = atom({
+  id: 0,
+  title: "",
+  user: "",
+  description: "",
+});
+
 export const Row = atom([
-  { no: 1, title: "장기웅", user: "장기웅", description: "", button: true },
-  { no: 2, title: "맛있는거", user: "맛있는거", description: "", button: true },
-  { no: 3, title: "사라", user: "사라", description: "", button: true },
-  { no: 4, title: "진짜로", user: "진짜로", description: "", button: true },
-  { no: 5, title: "고마운줄", user: "고마운줄", description: "", button: true },
+  { id: 1, title: "가나다", user: "lbm1212", description: "하늘은왜" },
+  { id: 2, title: "라마바", user: "jky2323", description: "아아아아아아" },
   {
-    no: 6,
-    title: "알면 소고기",
-    user: "알면 소고기",
-    description: "",
-    button: true,
+    id: 3,
+    title: "사아자",
+    user: "dlaguswns12",
+    description: "ㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜ",
+  },
+  {
+    id: 4,
+    title: "차카타",
+    user: "qudtlsdlaguswns12",
+    description: "??????????????",
+  },
+  {
+    id: 5,
+    title: "파하다",
+    user: "guswnszns",
+    description: "나나나나나나나나ㅏ나",
+  },
+  {
+    id: 6,
+    title: "히히히",
+    user: "dkflzkxh",
+    description: "아니아니아니아니아니아니아니아니아니아니",
   },
 ]);
