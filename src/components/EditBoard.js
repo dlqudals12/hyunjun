@@ -78,8 +78,10 @@ export const EditBoard = (props) => {
   const rows = JSON.parse(localStorage.getItem("row"));
 
   useEffect(() => {
-    if (props.type === "ADD") {
-      setRowChangeData({ ...rowChangeData, id: rows[rows.length - 1].id + 1 });
+    if(localStorage.getItem("row")) {
+      if (props.type === "ADD") {
+        setRowChangeData({...rowChangeData, id: rows[rows.length - 1].id + 1});
+      }
     }
   }, []);
 

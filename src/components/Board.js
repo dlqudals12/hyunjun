@@ -67,24 +67,81 @@ export const Board = () => {
       width: 120,
       align: "center",
       headerAlign: "center",
+      sortable: false,
       headerClassName: "super-app-theme--header",
       renderCell: (param) => (
         <Button
           sx={{ height: "60px", backgroundColor: "#2a84d" }}
           onClick={() => {
-            setRowChangeData(param.row);
-            setType("UPD");
-            setOpenAddit(true);
-          }}
+            if(localStorage.getItem("isLogin")) {
+              if(param.row.user === JSON.parse(localStorage.getItem("isLogin")).id) {
+                setRowChangeData(param.row);
+                setType("UPD");
+                setOpenAddit(true);
+              } else {
+                setAlertPopupData({
+                  ...alertPopupData, open: true, msg: '해당 유저가 아닙니다.', rightCallback: () => {
+                    setAlertPopupData({...alertPopupData, open: false});
+                  }
+                });
+            }
+            } else {
+              setAlertPopupData({
+                ...alertPopupData, open: true, msg: '로그인을 해주세요.', rightCallback: () => {
+                  setAlertPopupData({...alertPopupData, open: false});
+                }
+              });
+            }
+            }
+          }
         >
           수정
         </Button>
       ),
     },
+    {
+      field: "delete",
+      headerName: "Delete",
+      width: 120,
+      align: "center",
+      headerAlign: "center",
+      sortable: false,
+      headerClassName: "super-app-theme--header",
+      renderCell: (param) => (
+          <Button
+              sx={{ height: "60px", backgroundColor: "#2a84d" }}
+              onClick={() => {
+                if(localStorage.getItem("isLogin")) {
+                  if(param.row.user === JSON.parse(localStorage.getItem("isLogin")).id) {
+                    const delData = JSON.parse(localStorage.getItem("row")).filter(e => e.id !== param.row.id);
+                    localStorage.removeItem("row");
+                    localStorage.setItem("row", JSON.stringify(delData));
+                    setRow(JSON.parse(localStorage.getItem("row")));
+                  } else {
+                    setAlertPopupData({
+                      ...alertPopupData, open: true, msg: '해당 유저가 아닙니다.', rightCallback: () => {
+                        setAlertPopupData({...alertPopupData, open: false});
+                      }
+                    });
+                  }
+                } else {
+                  setAlertPopupData({
+                    ...alertPopupData, open: true, msg: '로그인을 해주세요.', rightCallback: () => {
+                      setAlertPopupData({...alertPopupData, open: false});
+                    }
+                  });
+                }
+              }
+              }
+          >
+            삭제
+          </Button>
+      ),
+    },
   ];
 
   const onClickCell = (row) => {
-    if (row.field !== "button") {
+    if (row.field !== "button" && row.field !== "delete") {
       navigate("/details", { state: { id: row.id } });
     }
   };
