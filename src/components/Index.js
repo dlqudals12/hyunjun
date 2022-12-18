@@ -8,7 +8,7 @@ import { Row } from "./data/Atom";
 
 const data = [
   { id: 1, title: "가나다", user: "lbm1212", description: "하늘은왜" },
-  { id: 2, title: "라마바", user: "jky2323", description: "아아아아아아" },
+  { id: 2, title: "바", user: "jky2323", description: "아아아아아아" },
   {
     id: 3,
     title: "사아자",
