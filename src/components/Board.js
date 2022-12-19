@@ -164,7 +164,7 @@ export const Board = () => {
           fontFamily: "NotoSansKRBold",
         }}
       >
-        {myRow ? "내가 쓴 글" : "게시판"}
+        {myRow ? "내가 쓴 글" : "백종원 3대천왕"}
       </Typography>
       <EditBoard
         open={openAddit}
